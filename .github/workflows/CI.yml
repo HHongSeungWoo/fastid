@@ -7,15 +7,13 @@ name: CI
 
 on:
   push:
-    branches:
-      - nop
     tags:
-      - '*'
+      - '[0-9]+.[0-9]+.[0-9]+'
   pull_request:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   linux:

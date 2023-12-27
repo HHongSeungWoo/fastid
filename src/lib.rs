@@ -8,7 +8,7 @@ fn get_ulid() -> PyResult<String> {
 }
 
 #[pymodule]
-fn pkpy(_py: Python, m: &PyModule) -> PyResult<()> {
+fn fastid(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(get_ulid, m)?)?;
     Ok(())
 }

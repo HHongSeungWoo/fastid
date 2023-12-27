@@ -1,4 +1,4 @@
-import pkpy
+import fastid
 from ulid import microsecond
 
 if __name__ == '__main__':
@@ -15,7 +15,7 @@ if __name__ == '__main__':
     t = time.time()
 
     for i in range(1000):
-        a = pkpy.ulid()
+        a = fastid.ulid()
         print(a)
 
     print(time.time() - t)

@@ -3,7 +3,7 @@ requires = ["maturin>=1.4,<2.0"]
 build-backend = "maturin"
 
 [project]
-name = "pkpy"
+name = "fastid"
 description = "This is a library for quickly generating unique IDs in Python."
 authors = [{ name = "Seungwoo Hong", email = "qksn1541@gmail.com" }]
 requires-python = ">=3.8"
