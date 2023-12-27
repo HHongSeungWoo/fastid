@@ -3,6 +3,12 @@
 version = 3
 
 [[package]]
+name = "atomic"
+version = "0.5.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c59bdb34bc650a32731b31bd8f0829cc15d24a708ee31559e0bb34f2bc320cba"
+
+[[package]]
 name = "autocfg"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -22,12 +28,13 @@ checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
 name = "fastid"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "once_cell",
  "pyo3",
  "rs-snowflake",
  "ulid",
+ "uuid",
 ]
 
 [[package]]
@@ -286,6 +293,29 @@ name = "unindent"
 version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c7de7d73e1754487cb58364ee906a499937a0dfabd86bcb980fa99ec8c8fa2ce"
+
+[[package]]
+name = "uuid"
+version = "1.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5e395fcf16a7a3d8127ec99782007af141946b4795001f876d54fb0d55978560"
+dependencies = [
+ "atomic",
+ "getrandom",
+ "rand",
+ "uuid-macro-internal",
+]
+
+[[package]]
+name = "uuid-macro-internal"
+version = "1.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f49e7f3f3db8040a100710a11932239fd30697115e2ba4107080d8252939845e"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
 
 [[package]]
 name = "wasi"
