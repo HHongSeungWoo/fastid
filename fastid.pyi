@@ -12,3 +12,7 @@ def snowflake_int(machine_id: int = 1, node_id: int = 1) -> int:
 
 def uuid_v7() -> str:
     ...
+
+
+def object_id() -> str:
+    """test"""

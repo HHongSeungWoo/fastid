@@ -1,9 +1,14 @@
 use std::sync::Mutex;
+
 use once_cell::sync::Lazy;
 use pyo3::prelude::*;
 use snowflake::SnowflakeIdGenerator;
 use ulid::Ulid;
 use uuid::Uuid;
+
+use crate::objectid::ObjectId;
+
+mod objectid;
 
 static SNOWFLAKE_GENERATOR: Lazy<Mutex<SnowflakeIdGenerator>> = Lazy::new(|| {
     Mutex::new(SnowflakeIdGenerator::new(1, 1))
@@ -40,6 +45,10 @@ fn uuid_v7() -> PyResult<String> {
     Ok(Uuid::now_v7().to_string())
 }
 
+#[pyfunction]
+fn object_id() -> PyResult<String> {
+    Ok(ObjectId::new().to_hex_string())
+}
 
 #[pymodule]
 fn fastid(_py: Python, m: &PyModule) -> PyResult<()> {
@@ -49,6 +58,8 @@ fn fastid(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(get_snowflake_str, m)?)?;
 
     m.add_function(wrap_pyfunction!(uuid_v7, m)?)?;
+
+    m.add_function(wrap_pyfunction!(object_id, m)?)?;
 
     Ok(())
 }
