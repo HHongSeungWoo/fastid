@@ -3,10 +3,12 @@ use once_cell::sync::Lazy;
 use pyo3::prelude::*;
 use snowflake::SnowflakeIdGenerator;
 use ulid::Ulid;
+use uuid::Uuid;
 
 static SNOWFLAKE_GENERATOR: Lazy<Mutex<SnowflakeIdGenerator>> = Lazy::new(|| {
     Mutex::new(SnowflakeIdGenerator::new(1, 1))
 });
+
 #[pyfunction]
 #[pyo3(name = "ulid")]
 fn get_ulid() -> PyResult<String> {
@@ -20,6 +22,7 @@ fn get_snowflake(machine_id: Option<i32>, node_id: Option<i32>) -> i64 {
     sg.machine_id = machine_id.unwrap_or(1);
     sg.real_time_generate()
 }
+
 #[pyfunction]
 #[pyo3(name = "snowflake_str")]
 fn get_snowflake_str(machine_id: Option<i32>, node_id: Option<i32>) -> PyResult<String> {
@@ -32,6 +35,11 @@ fn get_snowflake_int(machine_id: Option<i32>, node_id: Option<i32>) -> PyResult<
     Ok(get_snowflake(machine_id, node_id))
 }
 
+#[pyfunction]
+fn uuid_v7() -> PyResult<String> {
+    Ok(Uuid::now_v7().to_string())
+}
+
 
 #[pymodule]
 fn fastid(_py: Python, m: &PyModule) -> PyResult<()> {
@@ -39,6 +47,8 @@ fn fastid(_py: Python, m: &PyModule) -> PyResult<()> {
 
     m.add_function(wrap_pyfunction!(get_snowflake_int, m)?)?;
     m.add_function(wrap_pyfunction!(get_snowflake_str, m)?)?;
+
+    m.add_function(wrap_pyfunction!(uuid_v7, m)?)?;
 
     Ok(())
 }

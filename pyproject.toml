@@ -7,7 +7,7 @@ name = "fastid"
 description = "This is a library for quickly generating unique IDs in Python."
 authors = [{ name = "Seungwoo Hong", email = "qksn1541@gmail.com" }]
 requires-python = ">=3.7"
-keywords = ["unique-id", "id-generator", "ulid", "snowflake"]
+keywords = ["unique-id", "id-generator", "ulid", "snowflake", "uuid"]
 classifiers = [
     "Programming Language :: Rust",
     "Programming Language :: Python",
